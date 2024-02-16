@@ -12,7 +12,7 @@ export default function Home() {
   }, [navigate]);
 
   return (
-      <body style={{ backgroundColor: "#FCEEE1" }}>
+      <body style={{ backgroundColor: "#F2E4D8" }}>
         <div
           style={{
             display: "flex",

@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../pics/FirstBackground.png";
 
 export default function Introduction() {
+  const [id, setId] = useState(null);
+  const [age, setAge] = useState(null);
   const [selectedGender, setSelectedGender] = useState(null);
-  const navigate=useNavigate();
+  const [ableBtn, setAbleBtn] = useState(true);
+  const navigate = useNavigate();
+
+  const handleChangeId = (e) => {
+    setId(e.target.value);
+  };
+  const handleChangeAge = (e) => {
+    setAge(e.target.value);
+  };
 
   const handleClick = (gender) => {
     setSelectedGender(gender);
   };
 
-const handleNavigate = () => {
+
+  const handleNavigate = () => {
     navigate("/Question");
-}
+  };
+  useEffect(() => {
+    //버튼 여부
+    setAbleBtn(id && age && selectedGender !== null); 
+  }, [id, age, selectedGender]);
 
   return (
     <Container>
@@ -21,7 +36,7 @@ const handleNavigate = () => {
       <BoxContainer>
         <ContainerBox>
           <NameDiv>이름</NameDiv>
-          <NameInput></NameInput>
+          <NameInput value={id} onChange={handleChangeId}></NameInput>
           <Gender>성별</Gender>
           <GenderInputContainer>
             <GenderInput
@@ -39,17 +54,34 @@ const handleNavigate = () => {
             </GenderInput>
           </GenderInputContainer>
           <AgeDiv>나이</AgeDiv>
-          <AgeInput></AgeInput>
+          <AgeInput onChange={handleChangeAge}></AgeInput>
         </ContainerBox>
       </BoxContainer>
-      <FindBtn onClick={()=>handleNavigate()}>좋아하는 이성을 잡아볼까?</FindBtn>
+      <FindBtn
+        onClick={() => handleNavigate()}
+        disabled={!ableBtn}
+        style={{
+          opacity: ableBtn ? "1.0" : "0.5",
+        }}
+      >
+        좋아하는 이성을 잡아볼까?
+      </FindBtn>
     </Container>
   );
 }
 
 const Container = styled.div`
+  opacity: 0; /* Initial opacity set to 0 */
+  transition: opacity 1s ease; /* Add a transition effect */
+  animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
   font-size: 20px;
   font-weight: 700;
+  font-family: Pretendard;
 `;
 
 const ImgContainer = styled.img`
@@ -70,24 +102,26 @@ const BoxContainer = styled.div`
   background-color: white;
   z-index: 1;
   flex-direction: column;
-  color : #AC8623;
+  color: #ac8623;
 `;
 
 const ContainerBox = styled.div`
   margin: 20px 0 0 40px;
 `;
-const NameDiv = styled.div``;
+const NameDiv = styled.div`
+  margin-left: 5px;
+`;
 
 const NameInput = styled.input`
   margin-top: 10px;
-  padding-left: 15px;
+  padding: 0 0 0 15px;
   width: 70px;
   height: 45px;
   background-color: #dcdeee;
   border: none;
   border-radius: 30px;
   font-family: Pretendard;
-font-size : 20px;
+  font-size: 20px;
 `;
 
 const GenderInputContainer = styled.div`
@@ -96,57 +130,62 @@ const GenderInputContainer = styled.div`
 `;
 
 const Gender = styled.div`
-  margin-top: 30px;
+  margin: 30px 0 0 5px;
 `;
 
 const GenderInput = styled.div`
   display: flex;
   margin-top: 10px;
   background-color: ${(props) =>
-    props.$isHighlighted ? "#FCEEE1"
-    : "#DCDEEE"};
+    props.$isHighlighted ? "#FCEEE1" : "#DCDEEE"};
   justify-content: center;
   align-items: center;
   width: 80px;
   height: 45px;
   font-weight: 500;
   border-radius: 20px;
-  color : black;
+  color: black;
+
+  cursor: pointer;
 `;
 
 const AgeDiv = styled.div`
-  margin-top: 30px;
+  margin: 30px 0 0 5px;
 `;
 
 const AgeInput = styled.input`
-margin-top : 10px;
+  margin-top: 10px;
   background-color: #dcdeee;
   border: none;
   border-radius: 30px;
-  width: 60px;
+  width: 70px;
   height: 45px;
   padding: 0 0 0 15px;
-font-size : 20px;
+  font-size: 20px;
   font-family: Pretendard;
 `;
 
-const FindBtn = styled.div`
-cursor: pointer;  
-position: absolute;
-display : flex;
-width: 80%;
-height: 10%;
-border-radius: 30px;
-top: 85%;
-left: 10%;
-background-color: #FCEEE1;
-z-index: 1;
-color : black;
-justify-content : center;
-align-items : center;
-font-weight : 500;
-opacity : 0.8;
-&:focus {
-    opacity : 1;
-}
-`
+const FindBtn = styled.button`
+font-size: 20px;
+font-weight: 700;
+font-family: Pretendard;
+border : none;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  width: 80%;
+  height: 10%;
+  border-radius: 30px;
+  top: 85%;
+  left: 10%;
+  background-color: #fceee1;
+  z-index: 1;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  opacity: 0.8;
+  &:focus {
+    opacity: 1;
+  }
+`;
