@@ -1,47 +1,63 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import FirstBackground from "../pics/FirstBackground.png";
+/*-----------------------Q3----------------------------------*/
+/*-----------------------Men---------------------------------*/
+import ColdMale from "../pics/male/Q3/ColdMale.png";
+// import WarmMale from "../pics/male/Q3/WarmMale.png";
+// /*-----------------------Women-------------------------------*/
+// import ColdFemale from "../pics/female/Q3/ColdFemale.png";
+// import WarmFemale from "../pics/female/Q3/WarmFemale.png";
 
-export default function Introduction() {
+
+const optionsList = [
+  { label: "빈티지", value: "spring" },
+  { label: "힙한", value: "summer" },
+  { label: "청순한", value: "autumn" },
+  { label: "비즈니스", value: "winter" },
+];
+
+
+export default function QuestionThird() {
   const navigate = useNavigate();
-
-  const handleClick = (weather) => {
-    navigate("/QuestionDetail",{ state: { weather } });
+  const handleClick = () => {
+    navigate("/QuestionFourth");
   };
-
   return (
     <Container>
-      <ImgContainer src={FirstBackground} alt="Introduction" />
+      <ImgContainer src={ColdMale} alt="weatherPic" />
       <BoxContainer>
         <ContainerBox>
-          <NameDiv>상대방이 좋아하는 계절은?</NameDiv>
+          <NameDiv>상대방이 좋아하는 계절은</NameDiv>
           <BtnContainer>
-            <BtnBox onClick={() => handleClick(1)}>봄</BtnBox>
-            <BtnBox onClick={() => handleClick(2)}>여름</BtnBox>
-            <BtnBox onClick={() => handleClick(3)}>가을</BtnBox>
-            <BtnBox onClick={() => handleClick(4)}>겨울</BtnBox>
+            {optionsList.map((option) => (
+              <BtnBox
+                key={option.value}
+                onClick={() => handleClick(option.value)}
+              >
+                {option.label}
+              </BtnBox>
+            ))}
           </BtnContainer>
-          <SkipBox onClick={() => handleClick(5)}>잘 모르겠어요</SkipBox>
+          <SkipBox>잘 모르겠어요</SkipBox>
         </ContainerBox>
-      </BoxContainer>
+    </BoxContainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-opacity: 0; /* Initial opacity set to 0 */
-transition: opacity 1s ease; /* Add a transition effect */
-animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+  opacity: 0; /* Initial opacity set to 0 */
+  transition: opacity 1s ease; /* Add a transition effect */
+  animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
-}
   font-size: 20px;
   font-weight: 500;
   font-family: Pretendard;
-  
 `;
 
 const ImgContainer = styled.img`
@@ -101,6 +117,6 @@ const SkipBox = styled.div`
   width: 180px;
   height: 50px;
   opacity: 0.6;
-  color: black;
+  color: #ac8623;
   cursor: pointer;
 `;

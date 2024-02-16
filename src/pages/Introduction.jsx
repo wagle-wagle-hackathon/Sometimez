@@ -51,6 +51,14 @@ export default function Introduction() {
 }
 
 const Container = styled.div`
+opacity: 0; /* Initial opacity set to 0 */
+transition: opacity 1s ease; /* Add a transition effect */
+animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
   font-size: 20px;
   font-weight: 700;
   font-family: Pretendard;
