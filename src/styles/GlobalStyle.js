@@ -4,10 +4,7 @@ const GlobalStyle = createGlobalStyle`
 
 html {
     background-color: white;
-    width: 480px;
-    height: 100%;
-    border: 1px solid black;
-    margin: 0 auto;
+    font-family : Pretendard;
 }
 
 
