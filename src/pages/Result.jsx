@@ -54,7 +54,7 @@ export default function Result() {
         </BodyContainer>
         <BtnContainer>
           <BtnBox onClick={() => handletoMain()}>처음으로</BtnBox>
-          <CopyToClipboard text={window.location.href} onCopy={()=>handleCopy() }>
+          <CopyToClipboard text={window.location.href} onCopy={handleCopy}>
           <BtnBox>공유하기</BtnBox>
         </CopyToClipboard>
         </BtnContainer>
