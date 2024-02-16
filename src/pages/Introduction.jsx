@@ -109,7 +109,7 @@ const ContainerBox = styled.div`
   margin: 20px 0 0 40px;
 `;
 const NameDiv = styled.div`
-  margin-left: 5px;
+  margin-left: 2%;
 `;
 
 const NameInput = styled.input`
@@ -130,7 +130,7 @@ const GenderInputContainer = styled.div`
 `;
 
 const Gender = styled.div`
-  margin: 30px 0 0 5px;
+margin: 10% 0 0 2%;
 `;
 
 const GenderInput = styled.div`
@@ -150,7 +150,7 @@ const GenderInput = styled.div`
 `;
 
 const AgeDiv = styled.div`
-  margin: 30px 0 0 5px;
+margin: 10% 0 0 2%;
 `;
 
 const AgeInput = styled.input`

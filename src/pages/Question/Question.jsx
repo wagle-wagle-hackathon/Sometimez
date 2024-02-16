@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../../pics/FirstBackground.png";
+import DotNum from "../../components/DotNum";
 
 export default function Introduction() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function Introduction() {
           </BtnContainer>
           <SkipBox onClick={() => handleClick(5)}>잘 모르겠어요</SkipBox>
         </ContainerBox>
+        <DotNum num={1}/>
       </BoxContainer>
     </Container>
   );
