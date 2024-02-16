@@ -1,14 +1,9 @@
-import React from "react";
+import React from 'react'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../pics/FirstBackground.png";
+export default function FourBoxContainer() {
 
-export default function Introduction() {
-  const navigate = useNavigate();
-
-  const handleClick = (weather) => {
-    navigate("/QuestionDetail",{ state: { weather } });
-  };
 
   return (
     <Container>
@@ -17,10 +12,10 @@ export default function Introduction() {
         <ContainerBox>
           <NameDiv>상대방이 좋아하는 계절은?</NameDiv>
           <BtnContainer>
-            <BtnBox onClick={() => handleClick(1)}>봄</BtnBox>
-            <BtnBox onClick={() => handleClick(2)}>여름</BtnBox>
-            <BtnBox onClick={() => handleClick(3)}>가을</BtnBox>
-            <BtnBox onClick={() => handleClick(4)}>겨울</BtnBox>
+            <BtnBox onClick={()=>handleClick("spring")}>봄</BtnBox>
+            <BtnBox onClick={()=>handleClick("summer")}>여름</BtnBox>
+            <BtnBox onClick={()=>handleClick("autumn")}>가을</BtnBox>
+            <BtnBox onClick={()=>handleClick("winter")}>겨울</BtnBox>
           </BtnContainer>
           <SkipBox>잘 모르겠어요</SkipBox>
         </ContainerBox>
@@ -51,14 +46,14 @@ const BoxContainer = styled.div`
   top: 50%;
   left: 10%;
   background-color: white;
-  opacity: 0.9;
+  opacity : 0.9;
   z-index: 1;
   flex-direction: column;
   color: black;
 `;
 
 const ContainerBox = styled.div`
-  margin: 20px 0 0 30px;
+margin: 20px 0 0 30px;
 `;
 const NameDiv = styled.div`
   margin-left: 5px;
@@ -67,13 +62,13 @@ const NameDiv = styled.div`
 const BtnContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  row-gap: 20%;
-  margin-top: 30px;
+  row-gap: 20%; 
+  margin-top : 30px;
 `;
 
 const BtnBox = styled.div`
-  background-color: #fceee1;
-  color: black;
+  background-color: #FCEEE1;
+  color : black;
   display: flex;
   border-radius: 20px;
   justify-content: center;
@@ -83,15 +78,15 @@ const BtnBox = styled.div`
 `;
 
 const SkipBox = styled.div`
-  background-color: #fceee1;
-  display: flex;
-  margin: 40px 0 0 30px;
-  border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-  width: 180px;
-  height: 50px;
-  opacity: 0.6;
-  color: #ac8623;
-  cursor: pointer;
-`;
+background-color: #FCEEE1;
+display: flex;
+margin: 40px 0 0 30px;
+border-radius: 20px;
+justify-content: center;
+align-items: center;
+width: 180px;
+height: 50px;
+opacity : 0.6;
+color : #ac8623;
+cursor: pointer;
+`
