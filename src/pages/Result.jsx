@@ -3,11 +3,10 @@ import styled from "styled-components";
 import ResultPic from "../pics/Result.png";
 import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
-
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 export default function Result() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -18,6 +17,12 @@ export default function Result() {
 
   const handletoMain = () => {
     navigate("/");
+  };
+  const handleCopy = () => {
+    const currentURL = window.location.href;
+    alert("복사 성공했습니다");
+    // 복사 로직 추가 (예시)
+    navigator.clipboard.writeText(currentURL);
   };
 
   return (
@@ -30,14 +35,28 @@ export default function Result() {
           <Header>당신이 이성을 사로잡을 수 있는 도움말</Header>
         </ContainerBox>
         <BodyContainer>
-          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
-          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
-          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
-          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
+          <Body>
+            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
+            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
+          </Body>
+          <Body>
+            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
+            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
+          </Body>
+          <Body>
+            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
+            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
+          </Body>
+          <Body>
+            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
+            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
+          </Body>
         </BodyContainer>
         <BtnContainer>
           <BtnBox onClick={() => handletoMain()}>처음으로</BtnBox>
+          <CopyToClipboard text={window.location.href} onCopy={()=>handleCopy() }>
           <BtnBox>공유하기</BtnBox>
+        </CopyToClipboard>
         </BtnContainer>
       </BoxContainer>
       {isModalOpen && <Modal onClose={closeModal} />}
@@ -129,7 +148,7 @@ const Header = styled.div`
 
 const BodyContainer = styled.ul`
   margin: 60px 0 0 20px;
-  font-size : 18px;
+  font-size: 18px;
 `;
 
 const Body = styled.li`
