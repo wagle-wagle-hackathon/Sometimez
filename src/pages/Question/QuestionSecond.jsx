@@ -8,6 +8,7 @@ import Summer from "../../pics/weather/Summer.png";
 import Autumn from "../../pics/weather/Autumn.png";
 import Winter from "../../pics/weather/Winter.png";
 import WeatherAll from "../../pics/weather/WeatherAll.png";
+import DotNum from "../../components/DotNum";
 
 export default function QuestionSecond() {
   const location = useLocation();
@@ -48,6 +49,7 @@ export default function QuestionSecond() {
             따뜻하고 부드러운 이성
           </BtnBox>
         <SkipBox>잘 모르겠어요</SkipBox>
+        <DotNum num={2}/>
       </ContainerBox>
     </BoxContainer>
     </Container>
