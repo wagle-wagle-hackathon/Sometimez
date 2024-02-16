@@ -6,13 +6,13 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate("login");
+      navigate("/Introduction");
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
-      <body style={{ backgroundColor: "rgba(62, 134, 77,1)" }}>
+      <body style={{ backgroundColor: "#FCEEE1" }}>
         <div
           style={{
             display: "flex",
@@ -23,7 +23,7 @@ export default function Home() {
           <img
             src={SomeTimez}
             alt="SomeTimezLogo"
-            style={{ margin: "70%", width: "30%", height: "30%" }}
+            style={{ margin: "30%", width: "100%", }}
           />
         </div>
       </body>
