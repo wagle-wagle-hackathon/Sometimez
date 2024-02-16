@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 /*-----------------------Q3----------------------------------*/
 /*-----------------------Men---------------------------------*/
 import ColdMale from "../../pics/male/Q3/ColdMale.png";
-import DotNum from "../../components/DotNum";
 // import WarmMale from "../../pics/male/Q3/WarmMale.png";
 // /*-----------------------Women-------------------------------*/
 // import ColdFemale from "../../pics/female/Q3/ColdFemale.png";
@@ -41,7 +40,6 @@ export default function QuestionThird() {
           <SkipBox>잘 모르겠어요</SkipBox>
         </ContainerBox>
       </BoxContainer>
-      <DotNum num={3} />
     </Container>
   );
 }

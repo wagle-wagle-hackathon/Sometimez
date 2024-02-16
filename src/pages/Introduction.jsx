@@ -95,7 +95,7 @@ const BoxContainer = styled.div`
   position: absolute;
   display: flex;
   width: 80%;
-  height: 40%;
+  min-height: 45%;
   border-radius: 30px;
   top: 30%;
   left: 10%;

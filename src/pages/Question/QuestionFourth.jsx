@@ -5,7 +5,6 @@ import styled from "styled-components";
 /*-----------------------Men---------------------------------*/
 import BusMale from "../../pics/male/Q4/BusMale.png";
 import { useNavigate } from "react-router-dom";
-import DotNum from "../../components/DotNum";
 // import GoodMale from "../../pics/male/Q4/GoodMale.png";
 // import HipMale from "../../pics/male/Q4/HipMale.png";
 // import VintageMale from "../../pics/male/Q4/VintageMale.png";
@@ -45,7 +44,6 @@ export default function QuestionFourth() {
         </ContainerBox>
       </BoxContainer>
       
-      <DotNum num={4}/>
     </Container>
   );
 }
