@@ -1,27 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ResultPic from "../pics/Result.png";
+import Modal from "../components/Modal";
+import { useNavigate } from "react-router-dom";
 
 export default function Result() {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handletoMain = () => {
+    navigate("/");
+  };
+
   return (
     <Container>
+      <Overlay isModalOpen={isModalOpen} />
       <ImgContainer src={ResultPic} alt="ResultPic" />
-      <HeaderBox>결과보기</HeaderBox>
+      <HeaderBox onClick={openModal}>결과보기</HeaderBox>
       <BoxContainer>
-        <ContainerBox></ContainerBox>
+        <ContainerBox>
+          <Header>당신이 이성을 사로잡을 수 있는 도움말</Header>
+        </ContainerBox>
+        <BodyContainer>
+          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
+          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
+          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
+          <Body>- 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로 해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.</Body>
+        </BodyContainer>
         <BtnContainer>
-          <BtnBox>처음으로</BtnBox>
+          <BtnBox onClick={() => handletoMain()}>처음으로</BtnBox>
           <BtnBox>공유하기</BtnBox>
         </BtnContainer>
       </BoxContainer>
+      {isModalOpen && <Modal onClose={closeModal} />}
     </Container>
   );
 }
 
 const Container = styled.div`
-  opacity: 0; /* Initial opacity set to 0 */
-  transition: opacity 1s ease; /* Add a transition effect */
-  animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: fadeIn 1s ease forwards;
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -30,6 +57,19 @@ const Container = styled.div`
   font-size: 20px;
   font-weight: 700;
   font-family: Pretendard;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: ${({ isModalOpen }) => (isModalOpen ? 0.5 : 0)};
+  pointer-events: ${({ isModalOpen }) => (isModalOpen ? "auto" : "none")};
+  transition: opacity 0.5s ease;
+  z-index: 2;
 `;
 
 const ImgContainer = styled.img`
@@ -46,7 +86,7 @@ const HeaderBox = styled.div`
   justify-content: center;
   z-index: 1;
   top: 10%;
-  left: 30%;
+  left: 32%;
   color: white;
   border-radius: 30px;
   background-color: white;
@@ -54,7 +94,7 @@ const HeaderBox = styled.div`
   height: 40px;
   width: 150px;
   flex-direction: column;
-  cursor : pointer;
+  cursor: pointer;
 `;
 
 const BoxContainer = styled.div`
@@ -77,6 +117,24 @@ const ContainerBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Header = styled.div`
+  margin-top: 20px;
+  display: flex;
+  text-align: center;
+  color: #877549;
+  font-size: 26px;
+`;
+
+const BodyContainer = styled.ul`
+  margin: 60px 0 0 20px;
+  font-size : 18px;
+`;
+
+const Body = styled.li`
+  margin-top: 20px;
+  display: flex;
 `;
 
 const BtnContainer = styled.div`

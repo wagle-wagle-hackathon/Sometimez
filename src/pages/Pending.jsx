@@ -27,8 +27,16 @@ export default function Pending() {
   return (
     <Container>
       <ImgContainer src={MovieMale} alt="weatherPic" />
-      <PendingContainer src={PendingImg} alt="pendingImg" />
-      <PendingContainer src={PendingText} alt="pendingText" style={{left : "42%" ,top:"86.5%"}}/>
+      <PendingContainer
+        src={PendingImg}
+        alt="pendingImg"
+        style={{ height: "100px" }}
+      />
+      <PendingContainer
+        src={PendingText}
+        alt="pendingText"
+        style={{ left: "42%", top: "87%", height: "45px" }}
+      />
     </Container>
   );
 }
@@ -54,10 +62,9 @@ const ImgContainer = styled.img`
   height: 100%;
 `;
 
-const PendingContainer =styled.img`
-position: absolute;
-z-index: 1;
-top : 85%;
-left : 40%;
+const PendingContainer = styled.img`
+  position: absolute;
+  z-index: 1;
+  top: 85%;
+  left: 40%;
 `;
-
