@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import IntroductionImage from "../pics/IntroductionPic.png";
 import { useNavigate } from "react-router-dom";
+import FirstBackground from "../pics/FirstBackground.png";
 
 export default function Introduction() {
   const [selectedGender, setSelectedGender] = useState(null);
@@ -17,7 +17,7 @@ const handleNavigate = () => {
 
   return (
     <Container>
-      <ImgContainer src={IntroductionImage} alt="Introduction" />
+      <ImgContainer src={FirstBackground} alt="Introduction" />
       <BoxContainer>
         <ContainerBox>
           <NameDiv>이름</NameDiv>
@@ -39,7 +39,7 @@ const handleNavigate = () => {
             </GenderInput>
           </GenderInputContainer>
           <AgeDiv>나이</AgeDiv>
-          <AgeInput placeholder="ex)20살"></AgeInput>
+          <AgeInput></AgeInput>
         </ContainerBox>
       </BoxContainer>
       <FindBtn onClick={()=>handleNavigate()}>좋아하는 이성을 잡아볼까?</FindBtn>
@@ -70,6 +70,7 @@ const BoxContainer = styled.div`
   background-color: white;
   z-index: 1;
   flex-direction: column;
+  color : #AC8623;
 `;
 
 const ContainerBox = styled.div`
@@ -102,7 +103,7 @@ const GenderInput = styled.div`
   display: flex;
   margin-top: 10px;
   background-color: ${(props) =>
-    props.$isHighlighted ? "rgba(55, 97, 179, 0.6)" // Use rgba to set opacity only to the background color
+    props.$isHighlighted ? "#FCEEE1"
     : "#DCDEEE"};
   justify-content: center;
   align-items: center;
@@ -110,6 +111,7 @@ const GenderInput = styled.div`
   height: 45px;
   font-weight: 500;
   border-radius: 20px;
+  color : black;
 `;
 
 const AgeDiv = styled.div`
@@ -137,9 +139,9 @@ height: 10%;
 border-radius: 30px;
 top: 85%;
 left: 10%;
-background-color: #3761B3;
+background-color: #FCEEE1;
 z-index: 1;
-color : white;
+color : black;
 justify-content : center;
 align-items : center;
 font-weight : 500;
