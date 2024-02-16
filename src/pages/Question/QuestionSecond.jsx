@@ -3,18 +3,18 @@ import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 
 /*---------------------------날씨----------------------*/
-import Spring from "../pics/weather/Spring.png";
-import Summer from "../pics/weather/Summer.png";
-import Autumn from "../pics/weather/Autumn.png";
-import Winter from "../pics/weather/Winter.png";
-import WeatherAll from "../pics/weather/WeatherAll.png";
+import Spring from "../../pics/weather/Spring.png";
+import Summer from "../../pics/weather/Summer.png";
+import Autumn from "../../pics/weather/Autumn.png";
+import Winter from "../../pics/weather/Winter.png";
+import WeatherAll from "../../pics/weather/WeatherAll.png";
 
-export default function QuestionDetail() {
+export default function QuestionSecond() {
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleClick = (weather) => {
-    navigate("/QuestionDetail");
+    navigate("/QuestionThird");
   };
 
   const getWeatherPic = (weather) => {
@@ -41,7 +41,7 @@ export default function QuestionDetail() {
       <BoxContainer>
       <ContainerBox>
         <NameDiv>이성의 성격을 선택하세요</NameDiv>
-          <BtnBox onClick={() => handleClick("cold")} style={{backgroundColor : "skyblue"}}>
+          <BtnBox onClick={() => handleClick("cold")}>
             차갑고 도도한 이성
           </BtnBox>
           <BtnBox onClick={() => handleClick("warm")}>
@@ -100,7 +100,7 @@ const NameDiv = styled.div`
 `;
 
 const BtnBox = styled.div`
-  background-color: brown;
+background-color : white;
   color: black;
   display: flex;
   border-radius: 20px;
@@ -109,6 +109,7 @@ const BtnBox = styled.div`
   width: 200px;
   height: 50px;
   margin-top : 30px;
+  cursor: pointer;
 `;
 
 const SkipBox = styled.div`

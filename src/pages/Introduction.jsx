@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../pics/FirstBackground.png";
 
 export default function Introduction() {
+  const [id, setId] = useState(null);
+  const [age, setAge] = useState(null);
   const [selectedGender, setSelectedGender] = useState(null);
+  const [ableBtn, setAbleBtn] = useState(true);
   const navigate = useNavigate();
-  const id = null;
+
+  const handleChangeId = (e) => {
+    setId(e.target.value);
+  };
+  const handleChangeAge = (e) => {
+    setAge(e.target.value);
+  };
 
   const handleClick = (gender) => {
     setSelectedGender(gender);
   };
 
+
   const handleNavigate = () => {
     navigate("/Question");
   };
+  useEffect(() => {
+    //버튼 여부
+    setAbleBtn(id && age && selectedGender !== null); 
+  }, [id, age, selectedGender]);
 
   return (
     <Container>
@@ -22,7 +36,7 @@ export default function Introduction() {
       <BoxContainer>
         <ContainerBox>
           <NameDiv>이름</NameDiv>
-          <NameInput value={id}></NameInput>
+          <NameInput value={id} onChange={handleChangeId}></NameInput>
           <Gender>성별</Gender>
           <GenderInputContainer>
             <GenderInput
@@ -40,10 +54,16 @@ export default function Introduction() {
             </GenderInput>
           </GenderInputContainer>
           <AgeDiv>나이</AgeDiv>
-          <AgeInput ></AgeInput>
+          <AgeInput onChange={handleChangeAge}></AgeInput>
         </ContainerBox>
       </BoxContainer>
-      <FindBtn onClick={() => handleNavigate()}>
+      <FindBtn
+        onClick={() => handleNavigate()}
+        disabled={!ableBtn}
+        style={{
+          opacity: ableBtn ? "1.0" : "0.5",
+        }}
+      >
         좋아하는 이성을 잡아볼까?
       </FindBtn>
     </Container>
@@ -51,14 +71,14 @@ export default function Introduction() {
 }
 
 const Container = styled.div`
-opacity: 0; /* Initial opacity set to 0 */
-transition: opacity 1s ease; /* Add a transition effect */
-animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+  opacity: 0; /* Initial opacity set to 0 */
+  transition: opacity 1s ease; /* Add a transition effect */
+  animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
-}
   font-size: 20px;
   font-weight: 700;
   font-family: Pretendard;
@@ -125,12 +145,12 @@ const GenderInput = styled.div`
   font-weight: 500;
   border-radius: 20px;
   color: black;
-  
+
   cursor: pointer;
 `;
 
 const AgeDiv = styled.div`
-margin: 30px 0 0 5px;
+  margin: 30px 0 0 5px;
 `;
 
 const AgeInput = styled.input`
@@ -145,7 +165,11 @@ const AgeInput = styled.input`
   font-family: Pretendard;
 `;
 
-const FindBtn = styled.div`
+const FindBtn = styled.button`
+font-size: 20px;
+font-weight: 700;
+font-family: Pretendard;
+border : none;
   cursor: pointer;
   position: absolute;
   display: flex;

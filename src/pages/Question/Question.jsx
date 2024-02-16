@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import FirstBackground from "../pics/FirstBackground.png";
+import FirstBackground from "../../pics/FirstBackground.png";
 
 export default function Introduction() {
   const navigate = useNavigate();
 
   const handleClick = (weather) => {
-    navigate("/QuestionDetail",{ state: { weather } });
+    navigate("/QuestionSecond",{ state: { weather } });
   };
 
   return (
@@ -30,18 +30,17 @@ export default function Introduction() {
 }
 
 const Container = styled.div`
-opacity: 0; /* Initial opacity set to 0 */
-transition: opacity 1s ease; /* Add a transition effect */
-animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+  opacity: 0; /* Initial opacity set to 0 */
+  transition: opacity 1s ease; /* Add a transition effect */
+  animation: fadeIn 1s ease forwards; /* Add a fade-in animation */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
   }
-}
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   font-family: Pretendard;
-  
 `;
 
 const ImgContainer = styled.img`
@@ -54,12 +53,13 @@ const ImgContainer = styled.img`
 const BoxContainer = styled.div`
   position: absolute;
   display: flex;
+  align-items: center;
   width: 80%;
   height: 40%;
   border-radius: 30px;
   top: 50%;
   left: 10%;
-  background-color: white;
+  background-color: #dcdeee;
   opacity: 0.9;
   z-index: 1;
   flex-direction: column;
@@ -67,40 +67,42 @@ const BoxContainer = styled.div`
 `;
 
 const ContainerBox = styled.div`
-  margin: 20px 0 0 30px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
-const NameDiv = styled.div`
-  margin-left: 5px;
-`;
+const NameDiv = styled.div``;
 
 const BtnContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 20%;
+  column-gap : 5%;
   margin-top: 30px;
 `;
 
 const BtnBox = styled.div`
-  background-color: #fceee1;
+  background-color: white;
   color: black;
   display: flex;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 50px;
+  width: 100px;
+  height: 45px;
 `;
 
 const SkipBox = styled.div`
-  background-color: #fceee1;
+  background-color: black;
+  color : white;
   display: flex;
-  margin: 40px 0 0 30px;
+  margin-top : 60px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
-  width: 180px;
-  height: 50px;
-  opacity: 0.6;
-  color: black;
+  width: 130px;
+  height: 30px;
+  font-size : 14px;
   cursor: pointer;
 `;
