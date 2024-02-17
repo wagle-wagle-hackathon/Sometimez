@@ -80,7 +80,7 @@ export default function Introduction() {
           opacity: ableBtn ? "1.0" : "0.5",
         }}
       >
-        좋아하는 이성을 잡아볼까?
+        좋아하는 이성을 사로잡는 방법!
       </FindBtn>
     </Container>
   );

@@ -32,7 +32,7 @@ background-color : #DCDCEE;
 const Modal = ({ onClose }) => {
   return (
     <ModalContainer>
-      <p>사실 정답은 없는 것 같아요.</p>
+      <p>사실 정답이 있기 보다는</p>
       <p>중요한건 본인의 마음가짐</p>
       <p>아닐까요?</p>
       <Btn onClick={onClose}>닫기</Btn>
