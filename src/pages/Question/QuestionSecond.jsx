@@ -8,6 +8,7 @@ import Summer from "../../pics/weather/Summer.png";
 import Autumn from "../../pics/weather/Autumn.png";
 import Winter from "../../pics/weather/Winter.png";
 import WeatherAll from "../../pics/weather/WeatherAll.png";
+import DotNum from "../../components/DotNum";
 
 export default function QuestionSecond() {
   const location = useLocation();
@@ -123,7 +124,7 @@ const SkipBox = styled.div`
   background-color: black;
   color : white;
   display: flex;
-  margin-top : 40px;
+  margin-top : 20px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;

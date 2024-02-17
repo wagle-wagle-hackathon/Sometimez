@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../../pics/FirstBackground.png";
+import DotNum from "../../components/DotNum";
 
 export default function Introduction() {
   const navigate = useNavigate();
@@ -140,6 +141,7 @@ const SkipBox = styled.div`
   cursor: pointer;
 `;
 
+
 const IndexBox = styled.div`
   position: absolute;
   bottom: 10%;
@@ -168,6 +170,4 @@ const Index = styled.div`
   border-radius: 100%;
   background-color: #D9D9D9;
 `;
-
-
 
