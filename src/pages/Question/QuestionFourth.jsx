@@ -1,51 +1,106 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 /*-----------------------Q4----------------------------------*/
 /*-----------------------Men---------------------------------*/
 import BusMale from "../../pics/male/Q4/BusMale.png";
-import { useNavigate } from "react-router-dom";
-import DotNum from "../../components/DotNum";
-// import GoodMale from "../../pics/male/Q4/GoodMale.png";
-// import HipMale from "../../pics/male/Q4/HipMale.png";
-// import VintageMale from "../../pics/male/Q4/VintageMale.png";
-// /*-----------------------Women-------------------------------*/
-// import BusFemale from "../../pics/male/Q4/BusFemale.png";
-// import GoodFemale from "../../pics/male/Q4/GoodFemale.png";
-// import HipFemale from "../../pics/male/Q4/HipFemale.png";
-// import VintageFemale from "../../pics/male/Q4/VintageFemale.png";
-
-const optionsList = [
-  { label: "독서", value: "spring" },
-  { label: "운동", value: "summer" },
-  { label: "공부", value: "autumn" },
-  { label: "영화 감상", value: "winter" },
-];
+import GoodMale from "../../pics/male/Q4/GoodMale.png";
+import HipMale from "../../pics/male/Q4/HipMale.png";
+import VintageMale from "../../pics/male/Q4/VintageMale.png";
+import IDKMale from "../../pics/male/Q4/IDK.png";
+/*-----------------------Women-------------------------------*/
+import BusFemale from "../../pics/female/Q4/BusFemale.png";
+import GoodFemale from "../../pics/female/Q4/GoodFemale.png";
+import HipFemale from "../../pics/female/Q4/HipFemale.png";
+import VintageFemale from "../../pics/female/Q4/VinFemale.png";
+import IDKFemale from "../../pics/female/Q4/IDK.png";
 
 export default function QuestionFourth() {
+  const location = useLocation();
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/Pending");
+  const [choices, setChoices] = useState([]);
+  const gender = location.state.gender;
+
+  const token = localStorage.getItem("token");
+  const handleClick = (choceId, index) => {
+    axios
+      .post("http://dev.tmp-domain-service.shop/user-choice", {
+        params: {
+          token,
+          choceId,
+        },
+      })
+      .then((response) => {
+        console.log("POST 성공");
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.error(error);
+      });
+    navigate("/Pending", { state: { index ,gender} });
   };
 
+  useEffect(() => {
+    // API 호출
+    axios
+      .get("http://dev.tmp-domain-service.shop/questions", {
+        params: {
+          gender: gender === "male" ? 0 : 1, // 성별 정보를 쿼리스트링으로 전달
+        },
+      })
+      .then((response) => {
+        // API 응답 데이터에서 choiceId 추출
+        const choices = response.data.result[3].choices; // 여기서는 첫 번째 질문에 대한 응답을 받았다고 가정합니다.
+        console.log("choices:", choices);
+        setChoices(choices);
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.error(error);
+      });
+  }, [gender]);
+
+  const getGenderStyle = (value) => {
+    const maleImages = [VintageMale, GoodMale, HipMale, BusMale,IDKMale];
+    const femaleImages = [VintageFemale, GoodFemale, HipFemale, BusFemale,IDKFemale];
+
+    const imageArray = gender === "male" ? maleImages : femaleImages;
+
+    return imageArray[value] || imageArray[4];
+  };
+
+  const GenderStyleValue = getGenderStyle(location.state.index);
   return (
     <Container>
-      <ImgContainer src={BusMale} alt="weatherPic" />
+      <ImgContainer src={GenderStyleValue} alt="GenderStylePic" />
       <BoxContainer>
         <ContainerBox>
           <NameDiv>이성의 취미를 선택하세요</NameDiv>
           <BtnContainer>
-            {optionsList.map((option) => (
-              <BtnBox key={option.value} onClick={() => handleClick(option.value)}>
-                {option.label}
-              </BtnBox>
-            ))}
+            {choices.map(
+              (option, index) =>
+                index < 4 && (
+                  <BtnBox
+                    key={option.choceId}
+                    onClick={() => handleClick(option.choceId, index)}
+                  >
+                    {option.ctext}
+                  </BtnBox>
+                )
+            )}
           </BtnContainer>
-          <SkipBox>잘 모르겠어요</SkipBox>
+          <SkipBox onClick={() => handleClick(choices[4].choiceId,null)}>잘 모르겠어요</SkipBox>
+          <IndexBox>
+            <Index />
+            <Index />
+            <Index />
+            <CurrentIndex />
+            <Index />
+          </IndexBox>
         </ContainerBox>
       </BoxContainer>
-      
-      <DotNum num={4}/>
     </Container>
   );
 }
@@ -99,13 +154,13 @@ const BtnContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 20%;
-  column-gap : 5%;
+  column-gap: 5%;
   margin-top: 30px;
 `;
 
 const BtnBox = styled.div`
   background-color: white;
-  
+
   cursor: pointer;
   color: black;
   display: flex;
@@ -117,15 +172,42 @@ const BtnBox = styled.div`
 `;
 const SkipBox = styled.div`
   background-color: black;
-  color : white;
+  color: white;
   display: flex;
-  margin-top : 60px;
+  margin-top: 60px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
   width: 130px;
   height: 30px;
-  font-size : 14px;
+  font-size: 14px;
   cursor: pointer;
 `;
 
+const IndexBox = styled.div`
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  border-radius: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+`;
+
+const CurrentIndex = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: #fff;
+  text-align: center;
+`;
+
+const Index = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+`;
