@@ -26,9 +26,24 @@ export default function Result() {
   };
   const handleCopy = () => {
     const currentURL = window.location.href;
-    alert("복사 성공했습니다");
-    // 복사 로직 추가 (예시)
-    navigator.clipboard.writeText(currentURL);
+
+    // Check if the document is focused before performing clipboard operations
+    if (document.hasFocus()) {
+      alert("복사 성공했습니다");
+
+      // 복사 로직 추가 (예시)
+      navigator.clipboard
+        .writeText(currentURL)
+        .then(() => {
+          // Success
+        })
+        .catch((error) => {
+          console.error("Clipboard write failed:", error);
+        });
+    } else {
+      // Document is not focused, provide a user-friendly message or handle accordingly
+      alert("복사 실패: 문서가 포커스를 잃었습니다.");
+    }
   };
 
   useEffect(() => {
@@ -61,8 +76,8 @@ export default function Result() {
           <Header>당신이 {name}을(를) 사로잡을 수 있는 도움말</Header>
         </ContainerBox>
         <BodyContainer>
-            {advice &&
-              advice.map((item, index) => <Body key={index}>- {item}</Body>)}
+          {advice &&
+            advice.map((item, index) => <Body key={index}>- {item}</Body>)}
         </BodyContainer>
         <BtnContainer>
           <BtnBox onClick={() => handletoMain()}>처음으로</BtnBox>
@@ -88,7 +103,7 @@ const Container = styled.div`
   font-size: 20px;
   font-weight: 700;
   font-family: Pretendard;
-  display : flex;
+  display: flex;
   justify-content: center;
 `;
 
@@ -167,7 +182,7 @@ const BodyContainer = styled.ul`
 const Body = styled.li`
   margin-top: 20px;
   display: flex;
-  font-weight : 500;
+  font-weight: 500;
 `;
 
 const BtnContainer = styled.div`

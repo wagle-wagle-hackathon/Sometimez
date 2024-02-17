@@ -6,7 +6,7 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      //navigate("/Introduction");
+      navigate("/Introduction");
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigate]);
