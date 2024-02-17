@@ -25,7 +25,7 @@ export default function Introduction() {
 
   const handleNavigate = () => {
     // API 호출
-    axios.post('http://dev.tmp-domain-service.shop/result', {
+    axios.post('/result', {
       userId: 1,
       name: id,
       age: parseInt(age), // 문자열을 숫자로 변환

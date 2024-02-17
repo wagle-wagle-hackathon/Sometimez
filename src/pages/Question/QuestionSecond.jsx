@@ -18,7 +18,7 @@ export default function QuestionSecond() {
   const gender = location.state.gender;
   const handleClick = (choceId,index) => {
     axios
-      .post("http://dev.tmp-domain-service.shop/user-choice", {
+      .post("/user-choice", {
           resultId : token,
           choiceId : choceId,
       })
@@ -36,7 +36,7 @@ export default function QuestionSecond() {
   useEffect(() => {
     // API 호출
     axios
-      .get("http://dev.tmp-domain-service.shop/questions", {
+      .get("/questions", {
         params: {
           gender: gender === "male" ? 0 : 1, // 성별 정보를 쿼리스트링으로 전달
         },

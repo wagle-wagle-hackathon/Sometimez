@@ -12,7 +12,7 @@ export default function Introduction() {
   const gender = location.state.selectedGender;
   const handleClick = (choceId,index) => {
     axios
-      .post("http://dev.tmp-domain-service.shop/user-choice", {
+      .post("/user-choice", {
           resultId : token,
           choiceId : choceId,
       })

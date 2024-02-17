@@ -49,7 +49,7 @@ export default function Result() {
   useEffect(() => {
     // API 호출
     axios
-      .get("http://dev.tmp-domain-service.shop/result", {
+      .get("/result", {
         params: {
           userId: 1,
           resultId: token,
