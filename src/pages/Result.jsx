@@ -5,11 +5,14 @@ import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
 import axios from "axios"; // Axios 추가
+
 export default function Result() {
   const navigate = useNavigate();
-  const [advice,setAdvice] = useState();
+  const [advice, setAdvice] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem("token");
+  const [name, setName] = useState(null);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -33,13 +36,13 @@ export default function Result() {
     axios
       .get("http://dev.tmp-domain-service.shop/result", {
         params: {
-          userId : 1,
+          userId: 1,
           resultId: token,
         },
       })
       .then((response) => {
         const advice = response.data.result.advices; // 여기서는 첫 번째 질문에 대한 응답을 받았다고 가정합니다.
-        console.log("choices:", advice);
+        setName(response.data.result.name);
         setAdvice(advice);
       })
       .catch((error) => {
@@ -47,7 +50,7 @@ export default function Result() {
         console.error(error);
       });
   }, [token]);
-  
+
   return (
     <Container>
       <Overlay isModalOpen={isModalOpen} />
@@ -55,31 +58,17 @@ export default function Result() {
       <HeaderBox onClick={openModal}>결과보기</HeaderBox>
       <BoxContainer>
         <ContainerBox>
-          <Header>당신이 이성을 사로잡을 수 있는 도움말</Header>
+          <Header>당신이 {name}을(를) 사로잡을 수 있는 도움말</Header>
         </ContainerBox>
         <BodyContainer>
-          <Body>
-            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
-            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
-          </Body>
-          <Body>
-            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
-            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
-          </Body>
-          <Body>
-            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
-            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
-          </Body>
-          <Body>
-            - 상대방이 여름을 좋아한다면, 여름을 좋아하는 사람들은 자연적으로
-            해변이나 수영 등 여름의 자연을 즐기는 것을 선호할 수 있습니다.
-          </Body>
+            {advice &&
+              advice.map((item, index) => <Body key={index}>- {item}</Body>)}
         </BodyContainer>
         <BtnContainer>
           <BtnBox onClick={() => handletoMain()}>처음으로</BtnBox>
           <CopyToClipboard text={window.location.href} onCopy={handleCopy}>
-          <BtnBox>공유하기</BtnBox>
-        </CopyToClipboard>
+            <BtnBox>공유하기</BtnBox>
+          </CopyToClipboard>
         </BtnContainer>
       </BoxContainer>
       {isModalOpen && <Modal onClose={closeModal} />}
@@ -99,6 +88,8 @@ const Container = styled.div`
   font-size: 20px;
   font-weight: 700;
   font-family: Pretendard;
+  display : flex;
+  justify-content: center;
 `;
 
 const Overlay = styled.div`
@@ -128,7 +119,6 @@ const HeaderBox = styled.div`
   justify-content: center;
   z-index: 1;
   top: 10%;
-  left: 32%;
   color: white;
   border-radius: 30px;
   background-color: white;
@@ -162,7 +152,7 @@ const ContainerBox = styled.div`
 `;
 
 const Header = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
   text-align: center;
   color: #877549;
@@ -177,6 +167,7 @@ const BodyContainer = styled.ul`
 const Body = styled.li`
   margin-top: 20px;
   display: flex;
+  font-weight : 500;
 `;
 
 const BtnContainer = styled.div`

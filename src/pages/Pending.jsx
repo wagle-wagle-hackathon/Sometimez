@@ -46,7 +46,7 @@ export default function Pending() {
         <ImgContainer
           src={PendingImg}
           alt="PendingImage"
-          style={{ height: "100px" ,opacity: "0.7"}}
+          style={{ height: "130px" ,opacity: "0.7",}}
         />
         <TextContainer>
         <p>당신의 이상형과 </p>
@@ -87,7 +87,7 @@ const PendingContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-padding-top : 15px;
+padding-top : 25px;
   display : flex;
   flex-direction: column;
   text-align: center;

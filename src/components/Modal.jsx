@@ -17,6 +17,7 @@ const ModalContainer = styled.div`
   flex-direction : column;
   z-index: 2;
   font-size : 18px;
+  font-weight : 500;
   
 `;
 

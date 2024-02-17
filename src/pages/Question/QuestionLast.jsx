@@ -51,6 +51,8 @@ const Container = styled.div`
   font-size: 20px;
   font-weight: 700;
   font-family: Pretendard;
+  display : flex;
+  justify-content: center;
 `;
 
 const ImgContainer = styled.img`
@@ -64,16 +66,17 @@ const HeaderBox = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-  margin-left: 5%;
   flex-direction: column;
   z-index: 1;
   color: white;
+  font-size : 27px;
 `;
 
 const HeaderTitle = styled.div`
   display: flex;
   text-align: center;
   margin-top: 10%;
+
 `;
 
 const HeaderBody = styled.div`
