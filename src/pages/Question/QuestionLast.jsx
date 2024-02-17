@@ -26,6 +26,13 @@ export default function QuestionLast() {
           <BtnBox onClick={() => handleClick()}>
             연락은 절대 보지 않고 전화한다.
           </BtnBox>
+          <IndexBox>
+            <Index />
+            <Index />
+            <Index />
+            <Index />
+            <CurrentIndex />
+          </IndexBox>
         </ContainerBox>
       </BoxContainer>
     </Container>
@@ -109,4 +116,33 @@ const BtnBox = styled.div`
   margin-top: 40px;
   
   cursor: pointer;
+`;
+
+const IndexBox = styled.div`
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  border-radius: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+`;
+
+const CurrentIndex = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: #fff;
+  text-align: center;
+
+`;
+
+const Index = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: #D9D9D9;
 `;

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../pics/FirstBackground.png";
+import axios from "axios"; // Axios 추가
 
 export default function Introduction() {
-  const [id, setId] = useState(null);
-  const [age, setAge] = useState(null);
+  const [id, setId] = useState("");
+  const [age, setAge] = useState("");
   const [selectedGender, setSelectedGender] = useState(null);
   const [ableBtn, setAbleBtn] = useState(true);
   const navigate = useNavigate();
@@ -23,11 +24,26 @@ export default function Introduction() {
 
 
   const handleNavigate = () => {
-    navigate("/Question");
+    // API 호출
+    axios.post('http://dev.tmp-domain-service.shop/result', {
+      userId: 1,
+      name: id,
+      age: parseInt(age), // 문자열을 숫자로 변환
+      gender: selectedGender === "male" ? 0 : 1, // 성별에 따라 값 설정
+    })
+      .then((response) => {
+        console.log(response.data); // 성공 시 응답 출력
+        const resultId = response.data.result.resultId;
+        localStorage.setItem("token", resultId);
+        navigate("/Question"); // 페이지 이동
+      })
+      .catch((error) => {
+        console.error(error); // 에러 발생 시 에러 출력
+      });
   };
   useEffect(() => {
     //버튼 여부
-    setAbleBtn(id && age && selectedGender !== null); 
+    setAbleBtn(id && age && selectedGender !== null);
   }, [id, age, selectedGender]);
 
   return (
@@ -58,7 +74,7 @@ export default function Introduction() {
         </ContainerBox>
       </BoxContainer>
       <FindBtn
-        onClick={() => handleNavigate()}
+        onClick={handleNavigate} // handleNavigate 함수 직접 호출
         disabled={!ableBtn}
         style={{
           opacity: ableBtn ? "1.0" : "0.5",
