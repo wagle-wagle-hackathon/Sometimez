@@ -40,18 +40,24 @@ export default function QuestionSecond() {
     <Container>
       <ImgContainer src={weatherPicValue} alt="weatherPic" />
       <BoxContainer>
-      <ContainerBox>
-        <NameDiv>이성의 성격을 선택하세요</NameDiv>
+        <ContainerBox>
+          <NameDiv>이성의 성격을 선택하세요</NameDiv>
           <BtnBox onClick={() => handleClick("cold")}>
             차갑고 도도한 이성
           </BtnBox>
           <BtnBox onClick={() => handleClick("warm")}>
             따뜻하고 부드러운 이성
           </BtnBox>
-        <SkipBox>잘 모르겠어요</SkipBox>
-        <DotNum num={2}/>
-      </ContainerBox>
-    </BoxContainer>
+          <SkipBox>잘 모르겠어요</SkipBox>
+          <IndexBox>
+            <Index />
+            <CurrentIndex />
+            <Index />
+            <Index />
+            <Index />
+          </IndexBox>
+        </ContainerBox>
+      </BoxContainer>
     </Container>
   );
 }
@@ -126,4 +132,33 @@ const SkipBox = styled.div`
   height: 30px;
   font-size : 14px;
   cursor: pointer;
+`;
+
+const IndexBox = styled.div`
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  border-radius: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+`;
+
+const CurrentIndex = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: #fff;
+  text-align: center;
+
+`;
+
+const Index = styled.div`
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: #D9D9D9;
 `;
