@@ -25,7 +25,7 @@ export default function Introduction() {
 
   const handleNavigate = () => {
     // API 호출
-    axios.post("http://dev.tmp-domain-service.shop/v3/api-docs/result", {
+    axios.post('http://dev.tmp-domain-service.shop/result', {
       userId: 1,
       name: id,
       age: parseInt(age), // 문자열을 숫자로 변환
@@ -33,6 +33,8 @@ export default function Introduction() {
     })
       .then((response) => {
         console.log(response.data); // 성공 시 응답 출력
+        const resultId = response.data.result.resultId;
+        localStorage.setItem("token", resultId);
         navigate("/Question"); // 페이지 이동
       })
       .catch((error) => {
