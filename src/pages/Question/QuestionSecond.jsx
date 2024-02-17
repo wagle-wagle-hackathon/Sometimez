@@ -8,7 +8,6 @@ import Summer from "../../pics/weather/Summer.png";
 import Autumn from "../../pics/weather/Autumn.png";
 import Winter from "../../pics/weather/Winter.png";
 import WeatherAll from "../../pics/weather/WeatherAll.png";
-import DotNum from "../../components/DotNum";
 
 export default function QuestionSecond() {
   const location = useLocation();

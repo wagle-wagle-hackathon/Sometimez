@@ -3,7 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import FirstBackground from "../../pics/FirstBackground.png";
-import DotNum from "../../components/DotNum";
 
 export default function Introduction() {
   const navigate = useNavigate();
@@ -42,14 +41,14 @@ export default function Introduction() {
           <BtnContainer>
             {choices.length > 0 && (
               <>
-                <BtnBox onClick={() => handleClick(choices[0].ctext)}>{choices[0].ctext}</BtnBox>
-                <BtnBox onClick={() => handleClick(choices[1].ctext)}>{choices[1].ctext}</BtnBox>
-                <BtnBox onClick={() => handleClick(choices[2].ctext)}>{choices[2].ctext}</BtnBox>
-                <BtnBox onClick={() => handleClick(choices[3].ctext)}>{choices[3].ctext}</BtnBox>
+                <BtnBox onClick={() => handleClick(choices[0].choiceId)}>{choices[0].ctext}</BtnBox>
+                <BtnBox onClick={() => handleClick(choices[1].choiceId)}>{choices[1].ctext}</BtnBox>
+                <BtnBox onClick={() => handleClick(choices[2].choiceId)}>{choices[2].ctext}</BtnBox>
+                <BtnBox onClick={() => handleClick(choices[3].choiceId)}>{choices[3].ctext}</BtnBox>
               </>
             )}
           </BtnContainer>
-          <SkipBox onClick={() => handleClick(5)}>잘 모르겠어요</SkipBox>
+          <SkipBox onClick={() => handleClick(choices[4].choiceId)}>{choices[4].ctext}</SkipBox>
         </ContainerBox>
         <IndexBox>
           <CurrentIndex />
