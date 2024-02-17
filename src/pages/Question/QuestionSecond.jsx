@@ -15,7 +15,7 @@ export default function QuestionSecond() {
   const navigate = useNavigate();
   const [choices, setChoices] = useState([]);
   const token = localStorage.getItem("token");
-  const gender = location.state.selectedGender;
+  const gender = location.state.gender;
   const handleClick = (choceId,index) => {
     axios
       .post("http://dev.tmp-domain-service.shop/user-choice", {

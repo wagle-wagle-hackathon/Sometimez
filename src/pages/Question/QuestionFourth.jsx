@@ -82,7 +82,7 @@ export default function QuestionFourth() {
                 index < 4 && (
                   <BtnBox
                     key={option.choceId}
-                    onClick={() => handleClick(option.choceId, index)}
+                    onClick={() => handleClick(option.choiceId, index)}
                   >
                     {option.ctext}
                   </BtnBox>

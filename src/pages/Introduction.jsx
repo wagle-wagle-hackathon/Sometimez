@@ -51,9 +51,9 @@ export default function Introduction() {
       <ImgContainer src={FirstBackground} alt="Introduction" />
       <BoxContainer>
         <ContainerBox>
-          <NameDiv>이름</NameDiv>
+          <NameDiv>이상형의 이름</NameDiv>
           <NameInput value={id} onChange={handleChangeId}></NameInput>
-          <Gender>성별</Gender>
+          <Gender>이상형의 성별</Gender>
           <GenderInputContainer>
             <GenderInput
               onClick={() => handleClick("male")}
@@ -69,7 +69,7 @@ export default function Introduction() {
               여자
             </GenderInput>
           </GenderInputContainer>
-          <AgeDiv>나이</AgeDiv>
+          <AgeDiv>이상형의 나이</AgeDiv>
           <AgeInput onChange={handleChangeAge}></AgeInput>
         </ContainerBox>
       </BoxContainer>

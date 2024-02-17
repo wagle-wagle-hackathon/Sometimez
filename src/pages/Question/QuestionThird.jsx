@@ -17,7 +17,7 @@ export default function QuestionThird() {
   const navigate = useNavigate();
   const [choices, setChoices] = useState([]);
   const token = localStorage.getItem("token");
-  const gender = location.state.selectedGender;
+  const gender = location.state.gender;
   const handleClick = (choceId,index) => {
     axios
       .post("http://dev.tmp-domain-service.shop/user-choice", {
@@ -88,7 +88,7 @@ export default function QuestionThird() {
                 index < 4 && (
                   <BtnBox
                     key={option.choiceId}
-                    onClick={() => handleClick(option.choceId, index)}
+                    onClick={() => handleClick(option.choiceId, index)}
                   >
                     {option.ctext}
                   </BtnBox>

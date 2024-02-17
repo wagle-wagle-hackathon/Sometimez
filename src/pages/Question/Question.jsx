@@ -23,7 +23,7 @@ export default function Introduction() {
         // 에러 처리
         console.error(error);
       });
-    navigate("/QuestionSecond" ,{ state: { index ,gender  } });
+    navigate("/QuestionSecond" ,{ state: { index , gender  } });
   };
 
 
