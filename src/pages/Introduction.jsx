@@ -35,7 +35,7 @@ export default function Introduction() {
         console.log(response.data); // 성공 시 응답 출력
         const resultId = response.data.result.resultId;
         localStorage.setItem("token", resultId);
-        navigate("/Question"); // 페이지 이동
+        navigate("/Question", { state: { selectedGender } } ); // 페이지 이동
       })
       .catch((error) => {
         console.error(error); // 에러 발생 시 에러 출력
