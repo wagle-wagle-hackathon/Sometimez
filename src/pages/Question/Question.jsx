@@ -13,10 +13,8 @@ export default function Introduction() {
   const handleClick = (choceId,index) => {
     axios
       .post("http://dev.tmp-domain-service.shop/user-choice", {
-        params: {
-          token,
-          choceId,
-        },
+          resultId : token,
+          choiceId : choceId,
       })
       .then((response) => {
         console.log("POST 성공");

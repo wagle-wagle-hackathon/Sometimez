@@ -16,15 +16,13 @@ export default function QuestionThird() {
   const location = useLocation();
   const navigate = useNavigate();
   const [choices, setChoices] = useState([]);
-  const gender = location.state.gender;
   const token = localStorage.getItem("token");
-  const handleClick = (choceId, index) => {
+  const gender = location.state.selectedGender;
+  const handleClick = (choceId,index) => {
     axios
       .post("http://dev.tmp-domain-service.shop/user-choice", {
-        params: {
-          token,
-          choceId,
-        },
+          resultId : token,
+          choiceId : choceId,
       })
       .then((response) => {
         console.log("POST 성공");

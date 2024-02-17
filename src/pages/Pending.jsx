@@ -9,12 +9,13 @@ import MovieMale from "../pics/male/Q5/MovieMale.png";
 import ReadMale from "../pics/male/Q5/ReadMale.png";
 import SportsMale from "../pics/male/Q5/SportsMale.png";
 import StudyMale from "../pics/male/Q5/StudyMale.png";
+import IDKMale from "../pics/male/Q5/IDK.png";
 /*-----------------------Women-------------------------------*/
 import MovieFemale from "../pics/female/Q5/MovieFemale.png";
 import ReadFemale from "../pics/female/Q5/ReadFemale.png";
 import SportsFemale from "../pics/female/Q5/SportsFemale.png";
 import StudyFemale from "../pics/female/Q5/StudyFemale.png";
-import IDK from "../pics/female/Q5/IDK.png";
+import IDKFemale from "../pics/female/Q5/IDK.png";
 
 export default function Pending() {
   const navigate = useNavigate();
@@ -23,18 +24,18 @@ export default function Pending() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      //navigate("/QuestionLast");
+      navigate("/QuestionLast");
     }, 3000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
   const getGenderStyle = (value) => {
-    const maleImages = [ReadMale, SportsMale, StudyMale, MovieMale];
-    const femaleImages = [ReadFemale, SportsFemale, StudyFemale, MovieFemale];
+    const maleImages = [ReadMale, SportsMale, StudyMale, MovieMale,IDKMale];
+    const femaleImages = [ReadFemale, SportsFemale, StudyFemale, MovieFemale,IDKFemale];
 
     const imageArray = gender === "male" ? maleImages : femaleImages;
 
-    return value < imageArray.length ? imageArray[value] : IDK;
+    return imageArray[value] || imageArray[4];
   };
   const GenderStyleValue = getGenderStyle(location.state.index);
 
@@ -45,7 +46,7 @@ export default function Pending() {
         <ImgContainer
           src={PendingImg}
           alt="PendingImage"
-          style={{ height: "100px" ,opacity: "0.4"}}
+          style={{ height: "100px" ,opacity: "0.7"}}
         />
         <TextContainer>
         <p>당신의 이상형과 </p>
@@ -73,16 +74,16 @@ const Container = styled.div`
 
 const ImgContainer = styled.img`
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   width: 100%;
   height: 100%;
 `;
 
 const PendingContainer = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   top: 85%;
-  left: 30%;
+  left: 35%;
 `;
 
 const TextContainer = styled.div`
@@ -90,5 +91,7 @@ padding-top : 15px;
   display : flex;
   flex-direction: column;
   text-align: center;
-  
+  font-size : 18px;
+  font-weight : 700;
+
 `

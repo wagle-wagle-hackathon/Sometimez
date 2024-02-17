@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ResultPic from "../pics/Result.png";
 import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
+import axios from "axios"; // Axios 추가
 export default function Result() {
   const navigate = useNavigate();
+  const [advice,setAdvice] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const token = localStorage.getItem("token");
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -25,6 +28,26 @@ export default function Result() {
     navigator.clipboard.writeText(currentURL);
   };
 
+  useEffect(() => {
+    // API 호출
+    axios
+      .get("http://dev.tmp-domain-service.shop/result", {
+        params: {
+          userId : 1,
+          resultId: token,
+        },
+      })
+      .then((response) => {
+        const advice = response.data.result.advices; // 여기서는 첫 번째 질문에 대한 응답을 받았다고 가정합니다.
+        console.log("choices:", advice);
+        setAdvice(advice);
+      })
+      .catch((error) => {
+        // 에러 처리
+        console.error(error);
+      });
+  }, [token]);
+  
   return (
     <Container>
       <Overlay isModalOpen={isModalOpen} />
