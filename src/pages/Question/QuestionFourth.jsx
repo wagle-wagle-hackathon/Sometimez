@@ -27,10 +27,8 @@ export default function QuestionFourth() {
   const handleClick = (choceId, index) => {
     axios
       .post("http://dev.tmp-domain-service.shop/user-choice", {
-        params: {
-          token,
-          choceId,
-        },
+          resultId :token,
+          choiceId : choceId,
       })
       .then((response) => {
         console.log("POST 성공");
@@ -39,7 +37,7 @@ export default function QuestionFourth() {
         // 에러 처리
         console.error(error);
       });
-    navigate("/Pending", { state: { index ,gender} });
+    navigate("/Pending", { state: { index , gender} });
   };
 
   useEffect(() => {

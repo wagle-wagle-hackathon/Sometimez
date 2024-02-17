@@ -15,14 +15,12 @@ export default function QuestionSecond() {
   const navigate = useNavigate();
   const [choices, setChoices] = useState([]);
   const token = localStorage.getItem("token");
-  const gender = location.state.gender;
+  const gender = location.state.selectedGender;
   const handleClick = (choceId,index) => {
     axios
       .post("http://dev.tmp-domain-service.shop/user-choice", {
-        params: {
-          token,
-          choceId,
-        },
+          resultId : token,
+          choiceId : choceId,
       })
       .then((response) => {
         console.log("POST 성공");
